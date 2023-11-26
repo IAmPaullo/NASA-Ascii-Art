@@ -1,23 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Ascii_Art
 {
     class ImageProcessing
     {
-        static char[] asciiChars = { ' ', '.', ':', '-', '=', '+', '*', '#', '%', '8', '@' };
-       static int height;
-       static int width;
+        static readonly char[] asciiChars = { ' ', '.', ':', '-', '=', '+', '*', '#', '%', '8', '@' };
+        static int height;
+        static int width;
+
+        const float luminosityR = 0.2126f;
+        const float luminosityG = 0.7152f;
+        const float luminosityB = 0.0722f;
+        const float pBrightnessR = 0.2989f;
+        const float pBrightnessG = 0.5870f;
+        const float pBrightnessB = 0.1140f;
         public ImageProcessing(Bitmap image)
         {
             height = 40;
             width = 80;
             CreateAsciiArt(image);
-
         }
 
 
@@ -53,6 +56,27 @@ namespace Ascii_Art
             int index = grayValue * (asciiChars.Length - 1) / 255;
             return asciiChars[index];
         }
+        private static char GetAsciiCharLuminosity(Color color)
+        {
+            float grayValue = (luminosityR * color.R + luminosityG * color.G + luminosityB * color.B) / 3;
+            int index = (int)grayValue * (asciiChars.Length - 1) / 255;
+            return asciiChars[index];
+        }
+        private static char GetAsciiCharPerceivableBrightness(Color color)
+        {
+            float grayValue = (pBrightnessR * color.R + pBrightnessG * color.G + pBrightnessB * color.B) / 3;
+            int index = (int)grayValue * (asciiChars.Length - 1) / 255;
+            return asciiChars[index];
+        }
+        //private static char GetColoredAsciiChar(Color color)
+        //{
+        //    int grayValue = (color.R + color.G + color.B) / 3;
+        //    int index = grayValue * (asciiChars.Length - 1) / 255;
+        //    ConsoleColor consoleColor = newColor;
+        //    Console.ForegroundColor = newColor;
+        //    return asciiChars[index];
+        //TODO:maybe implement color library??
+        //}
     }
 
 
