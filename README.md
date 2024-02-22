@@ -1,4 +1,4 @@
-# ASCII Art Generator
+# NASA Astronomy Picture of the Day to ASCII Art Generator
 ![11](https://github.com/IAmPaullo/NASA-Ascii-Art/assets/39301693/b39d015c-f69a-4a64-a4c5-a86d867dce54)
 
 I've always been a fan of ASCII art. From old forums to my personal Steam page, I find it amazing how people can be creative with these artworks.
